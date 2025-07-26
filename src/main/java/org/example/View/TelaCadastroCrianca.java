@@ -26,27 +26,27 @@ public class TelaCadastroCrianca extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
 
-        // Painel principal com os campos
+        //painel principal com os campos
         JPanel formPanel = new JPanel(new GridBagLayout());
         formPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(4, 4, 4, 4);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // --- Seção de Dados Pessoais ---
+        //seção de Dados Pessoais
         JPanel panelPessoal = createSectionPanel("Dados Pessoais");
         gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2; formPanel.add(panelPessoal, gbc);
-        // Nome
+        //nome
         panelPessoal.add(new JLabel("Nome Completo:"), createGbc(0, 0, GridBagConstraints.EAST));
         txtNome = new JTextField(30);
         panelPessoal.add(txtNome, createGbc(1, 0));
-        // Data de Nascimento
+        //data de Nascimento
         panelPessoal.add(new JLabel("Data de Nascimento (dd/mm/aaaa):"), createGbc(0, 1, GridBagConstraints.EAST));
         txtDataNascimento = new JTextField(10);
         panelPessoal.add(txtDataNascimento, createGbc(1, 1));
-        // Gênero
+        //gênero
         panelPessoal.add(new JLabel("Gênero:"), createGbc(2, 1, GridBagConstraints.EAST));
-        cbGenero = new JComboBox<>(new String[]{"", "Feminino", "Masculino", "Outro"});
+        cbGenero = new JComboBox<>(new String[]{"Feminino", "Masculino"});
         panelPessoal.add(cbGenero, createGbc(3, 1));
 
         // --- Seção de Endereço ---

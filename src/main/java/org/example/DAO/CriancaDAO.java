@@ -10,11 +10,6 @@ import java.sql.Types;
 
 public class CriancaDAO {
 
-    /**
-     * Insere uma nova criança no banco de dados.
-     * @param criancaDTO Objeto DTO com todas as informações da criança.
-     * @throws SQLException se ocorrer um erro durante a operação no banco.
-     */
     public void cadastrarCrianca(CriancaDTO criancaDTO) throws SQLException {
         // SQL para inserção na tabela 'crianca'
         String sql = "INSERT INTO crianca (nome, data_nascimento, genero, data_entrada, " +
