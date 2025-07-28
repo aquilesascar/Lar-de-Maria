@@ -5,10 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexaoMySQL {
+
     // Sua URL do banco de dados
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/lardemaria_doacao?useTimezone=true&serverTimezone=UTC";
     private static final String USUARIO = "root"; // Ex: root
-    private static final String SENHA = "Aquiles";     // A senha do seu usuário
+    private static final String SENHA = "root";     // A senha do seu usuário
 
     public static void main(String[] args) {
         Connection conexao = null;
@@ -20,7 +21,6 @@ public class ConexaoMySQL {
 
             // Aqui você pode adicionar lógica para interagir com o banco de dados
             // (ex: Statements, PreparedStatements, ResultSet)
-
         } catch (SQLException e) {
             System.err.println("Erro ao conectar ou operar no banco de dados: " + e.getMessage());
             e.printStackTrace();

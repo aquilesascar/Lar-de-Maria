@@ -1,5 +1,7 @@
 package org.example;
+
 import org.example.View.TelaCadastroCrianca;
+
 
 import javax.swing.*;
 
@@ -15,8 +17,11 @@ public class Main {
 
                 // 2. Torna a tela visível
                 telaCadastro.setVisible(true);
+
+
+
+
             }
         });
     }
 }
-
