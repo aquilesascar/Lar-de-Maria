@@ -14,7 +14,7 @@ public class CampanhaDAO {
                 "campanha (nome_campanha, valor_quantidade_arrecadado, meta_arrecadacao, data_inicio, data_final) " +
                 "VALUES (?, ?, ?, ?, ?)";
 
-        try (Connection conexao = ConexaoMySQL.getConnection();
+        try (Connection conexao = new ConexaoMySQL().getConnection();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setString(1, campanhaDTO.getNome_campanha());

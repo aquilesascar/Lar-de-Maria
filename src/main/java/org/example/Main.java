@@ -1,13 +1,11 @@
 package org.example;
-import org.example.View.TelaCadastroCrianca;
-import org.example.View.TelaCadastroCampanha;
 
+import org.example.View.TelaPrincipal;
 import javax.swing.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new TelaCadastroCampanha().setVisible(true));
+        SwingUtilities.invokeLater(() -> new TelaPrincipal().setVisible(true));
     }
 }
-

@@ -7,16 +7,7 @@ import java.sql.SQLException;
 public class ConexaoMySQL {
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/lardemaria_doacao?useTimezone=true&serverTimezone=UTC";
     private static final String USUARIO = "root"; // Ex: root
-    private static final String SENHA = "Aquiles";     // A senha do seu usuário
-
-    public static Connection getConnection() throws SQLException {
-        try {
-            return DriverManager.getConnection(URL, USUARIO, SENHA);
-        } catch (SQLException e) {
-            System.err.println("Erro ao estabelecer conexão com o banco: " + e.getMessage());
-            throw e;
-        }
-    }
+    private static final String SENHA = "root";     // A senha do seu usuário
 
     // Método para obter a conexão com o banco de dados
     public Connection getConnection() throws SQLException {
