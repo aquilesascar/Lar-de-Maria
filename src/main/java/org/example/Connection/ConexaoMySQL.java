@@ -10,33 +10,11 @@ public class ConexaoMySQL {
     private static final String SENHA = "root";     // A senha do seu usuário
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USUARIO, SENHA);
-    }
-
-    public static void main(String[] args) {
-        Connection conexao = null;
         try {
-            // Tenta estabelecer a conexão
-            System.out.println("Tentando conectar ao banco de dados LarDeMaria...");
-            conexao = DriverManager.getConnection(URL, USUARIO, SENHA);
-            System.out.println("Conexão estabelecida com sucesso ao banco de dados LarDeMaria!");
-
-            // Aqui você pode adicionar lógica para interagir com o banco de dados
-            // (ex: Statements, PreparedStatements, ResultSet)
-
+            return DriverManager.getConnection(URL, USUARIO, SENHA);
         } catch (SQLException e) {
-            System.err.println("Erro ao conectar ou operar no banco de dados: " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            // Garante que a conexão seja fechada, mesmo que ocorra um erro
-            try {
-                if (conexao != null) {
-                    conexao.close();
-                    System.out.println("Conexão com o banco de dados fechada.");
-                }
-            } catch (SQLException e) {
-                System.err.println("Erro ao fechar a conexão: " + e.getMessage());
-            }
+            System.err.println("Erro ao estabelecer conexão com o banco: " + e.getMessage());
+            throw e;
         }
     }
 }
