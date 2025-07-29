@@ -1,5 +1,4 @@
 package org.example.DAO;
-
 import org.example.Connection.ConexaoMySQL;
 import org.example.DTO.CriancaDTO;
 
@@ -13,7 +12,6 @@ public class CriancaDAO {
 
     /**
      * Insere uma nova criança no banco de dados.
-     *
      * @param criancaDTO Objeto DTO com todas as informações da criança.
      * @throws SQLException se ocorrer um erro durante a operação no banco.
      */

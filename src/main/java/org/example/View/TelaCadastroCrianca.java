@@ -1,5 +1,4 @@
 package org.example.View;
-
 import org.example.DAO.CriancaDAO;
 import org.example.DTO.CriancaDTO;
 
@@ -217,3 +216,4 @@ public class TelaCadastroCrianca extends JFrame {
         txtNome.requestFocus();
     }
 }
+
