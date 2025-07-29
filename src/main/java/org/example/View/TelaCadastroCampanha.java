@@ -4,7 +4,6 @@ import org.example.DAO.CampanhaDAO;
 import org.example.DTO.CampanhaDTO;
 
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,14 +11,15 @@ import java.util.Date;
 
 public class TelaCadastroCampanha extends JFrame {
 
-    private JTextField txtNomeCampanha, txtMetaArrecadacao, txtValorArrecadado, txtDataInicio, txtDataFinal;
+    private JTextField txtNomeCampanha, txtMetaArrecadacao, txtDataInicio, txtDataFinal;
+    private JTextArea txtMetaDescricao;
     private JButton btnSalvar, btnLimpar;
 
     private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public TelaCadastroCampanha() {
         setTitle("Cadastro de Campanha");
-        setSize(500, 400);
+        setSize(550, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
@@ -39,17 +39,20 @@ public class TelaCadastroCampanha extends JFrame {
 
         // Meta de arrecadação
         gbc.gridx = 0; gbc.gridy = 1;
-        formPanel.add(new JLabel("Meta de Arrecadação:"), gbc);
+        formPanel.add(new JLabel("Meta de Arrecadação (opcional):"), gbc);
         gbc.gridx = 1;
         txtMetaArrecadacao = new JTextField(20);
         formPanel.add(txtMetaArrecadacao, gbc);
 
-        // Valor arrecadado
+        // Meta descrição
         gbc.gridx = 0; gbc.gridy = 2;
-        formPanel.add(new JLabel("Valor Arrecadado:"), gbc);
+        formPanel.add(new JLabel("Descrição da Meta (opcional):"), gbc);
         gbc.gridx = 1;
-        txtValorArrecadado = new JTextField(20);
-        formPanel.add(txtValorArrecadado, gbc);
+        txtMetaDescricao = new JTextArea(3, 20);
+        txtMetaDescricao.setLineWrap(true);
+        txtMetaDescricao.setWrapStyleWord(true);
+        JScrollPane scroll = new JScrollPane(txtMetaDescricao);
+        formPanel.add(scroll, gbc);
 
         // Data de início
         gbc.gridx = 0; gbc.gridy = 3;
@@ -82,17 +85,23 @@ public class TelaCadastroCampanha extends JFrame {
     private void salvarCampanha() {
         try {
             String nome = txtNomeCampanha.getText().trim();
-            String meta = txtMetaArrecadacao.getText().trim();
-            float valor = Float.parseFloat(txtValorArrecadado.getText().trim());
+            String metaStr = txtMetaArrecadacao.getText().trim();
+            String descricao = txtMetaDescricao.getText().trim();
             Date inicio = sdf.parse(txtDataInicio.getText().trim());
             Date fim = sdf.parse(txtDataFinal.getText().trim());
 
-            if (!validarCampos(nome, meta, valor)) {
-                JOptionPane.showMessageDialog(this, "Preencha todos os campos obrigatórios.", "Erro", JOptionPane.ERROR_MESSAGE);
+            if (!validarCampos(nome, inicio, fim)) {
+                JOptionPane.showMessageDialog(this, "Preencha os campos obrigatórios.", "Erro", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            CampanhaDTO campanha = new CampanhaDTO(fim, inicio, meta, valor, nome);
+            Integer meta = null;
+            if (!metaStr.isEmpty()) {
+                meta = Integer.parseInt(metaStr);
+            }
+
+            CampanhaDTO campanha = new CampanhaDTO(nome, meta, descricao, inicio, fim);
+
             new CampanhaDAO().cadastrarCampanha(campanha);
 
             JOptionPane.showMessageDialog(this, "Campanha cadastrada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
@@ -101,26 +110,21 @@ public class TelaCadastroCampanha extends JFrame {
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(this, "Formato de data inválido. Use dd/mm/aaaa.", "Erro de Data", JOptionPane.ERROR_MESSAGE);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Valor arrecadado deve ser um número.", "Erro de Número", JOptionPane.ERROR_MESSAGE);
-        } catch (Error e) {
-            JOptionPane.showMessageDialog(this, "Nao foi possivel cadastrar a campanha", "Erro de Campanha", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Meta de arrecadação deve ser um número inteiro.", "Erro de Número", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Não foi possível cadastrar a campanha.", "Erro de Campanha", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
     }
 
-    private boolean validarCampos(String nome, String meta, float valor) {
-        if (nome.isEmpty() || meta.isEmpty()) {
-            return false;
-        }
-        else if(valor <= 0){
-            return false;
-        }
-        return true;
+    private boolean validarCampos(String nome, Date inicio, Date fim) {
+        return !nome.isEmpty() && inicio != null && fim != null;
     }
 
     private void limparCampos() {
         txtNomeCampanha.setText("");
         txtMetaArrecadacao.setText("");
-        txtValorArrecadado.setText("");
+        txtMetaDescricao.setText("");
         txtDataInicio.setText("");
         txtDataFinal.setText("");
         txtNomeCampanha.requestFocus();
