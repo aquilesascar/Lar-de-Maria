@@ -1,7 +1,5 @@
 package org.example;
-
 import org.example.View.TelaCadastroCrianca;
-
 
 import javax.swing.*;
 
@@ -25,3 +23,4 @@ public class Main {
         });
     }
 }
+

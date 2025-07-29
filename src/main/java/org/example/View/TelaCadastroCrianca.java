@@ -1,5 +1,4 @@
 package org.example.View;
-
 import org.example.DAO.CriancaDAO;
 import org.example.DTO.CriancaDTO;
 
@@ -27,38 +26,32 @@ public class TelaCadastroCrianca extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
 
-        // Painel principal com os campos
+        //painel principal com os campos
         JPanel formPanel = new JPanel(new GridBagLayout());
         formPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(4, 4, 4, 4);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // --- Seção de Dados Pessoais ---
+        //seção de Dados Pessoais
         JPanel panelPessoal = createSectionPanel("Dados Pessoais");
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridwidth = 2;
-        formPanel.add(panelPessoal, gbc);
-        // Nome
+        gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2; formPanel.add(panelPessoal, gbc);
+        //nome
         panelPessoal.add(new JLabel("Nome Completo:"), createGbc(0, 0, GridBagConstraints.EAST));
         txtNome = new JTextField(30);
         panelPessoal.add(txtNome, createGbc(1, 0));
-        // Data de Nascimento
+        //data de Nascimento
         panelPessoal.add(new JLabel("Data de Nascimento (dd/mm/aaaa):"), createGbc(0, 1, GridBagConstraints.EAST));
         txtDataNascimento = new JTextField(10);
         panelPessoal.add(txtDataNascimento, createGbc(1, 1));
-        // Gênero
+        //gênero
         panelPessoal.add(new JLabel("Gênero:"), createGbc(2, 1, GridBagConstraints.EAST));
-        cbGenero = new JComboBox<>(new String[]{"", "Feminino", "Masculino", "Outro"});
+        cbGenero = new JComboBox<>(new String[]{"Feminino", "Masculino"});
         panelPessoal.add(cbGenero, createGbc(3, 1));
 
         // --- Seção de Endereço ---
         JPanel panelEndereco = createSectionPanel("Endereço de Origem");
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.gridwidth = 2;
-        formPanel.add(panelEndereco, gbc);
+        gbc.gridx = 0; gbc.gridy = 1; gbc.gridwidth = 2; formPanel.add(panelEndereco, gbc);
         // Logradouro e Número
         panelEndereco.add(new JLabel("Logradouro:"), createGbc(0, 0, GridBagConstraints.EAST));
         txtLogradouro = new JTextField(25);
@@ -83,10 +76,7 @@ public class TelaCadastroCrianca extends JFrame {
 
         // --- Seção de Acolhimento e Saúde ---
         JPanel panelAcolhimento = createSectionPanel("Informações de Acolhimento e Saúde");
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.gridwidth = 1;
-        formPanel.add(panelAcolhimento, gbc);
+        gbc.gridx = 0; gbc.gridy = 2; gbc.gridwidth = 1; formPanel.add(panelAcolhimento, gbc);
         // Data de Entrada
         panelAcolhimento.add(new JLabel("Data de Entrada (dd/mm/aaaa):"), createGbc(0, 0));
         txtDataEntrada = new JTextField(10);
@@ -102,10 +92,7 @@ public class TelaCadastroCrianca extends JFrame {
 
         // --- Seção de Educação ---
         JPanel panelEducacao = createSectionPanel("Informações Educacionais");
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        gbc.gridwidth = 1;
-        formPanel.add(panelEducacao, gbc);
+        gbc.gridx = 1; gbc.gridy = 2; gbc.gridwidth = 1; formPanel.add(panelEducacao, gbc);
         // Escola
         panelEducacao.add(new JLabel("Escola:"), createGbc(0, 0));
         txtEscola = new JTextField(20);
@@ -217,3 +204,4 @@ public class TelaCadastroCrianca extends JFrame {
         txtNome.requestFocus();
     }
 }
+
