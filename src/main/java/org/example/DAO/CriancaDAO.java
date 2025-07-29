@@ -69,5 +69,4 @@ public class CriancaDAO {
         }
         return criancas;
     }
-
 }
