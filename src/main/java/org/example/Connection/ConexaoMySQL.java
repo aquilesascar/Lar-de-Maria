@@ -37,13 +37,4 @@ public class ConexaoMySQL {
         }
     }
 
-    // Método para obter a conexão com o banco de dados
-    public Connection getConnection() throws SQLException {
-        try {
-            return DriverManager.getConnection(URL, USUARIO, SENHA);
-        } catch (SQLException e) {
-            System.err.println("Erro ao estabelecer conexão com o banco: " + e.getMessage());
-            throw e; // Lança a exceção para que o chamador possa tratar
-        }
-    }
 }

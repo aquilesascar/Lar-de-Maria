@@ -1,12 +1,11 @@
 package org.example.DAO;
+
 import org.example.Connection.ConexaoMySQL;
 import org.example.DTO.CriancaDTO;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Types;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CriancaDAO {
 
@@ -49,5 +48,25 @@ public class CriancaDAO {
             // Executa a inserção
             pstm.executeUpdate();
         }
+    }
+
+    // DAO/CriancaDAO.java (Método auxiliar para listar crianças)
+// Adicione este método à sua classe CriancaDAO existente.
+
+    public List<CriancaDTO> listarCriancas() throws SQLException {
+        List<CriancaDTO> criancas = new ArrayList<>();
+        String sql = "SELECT id_crianca, nome FROM crianca ORDER BY nome ASC";
+        try (Connection conn = ConexaoMySQL.getConnection();
+             PreparedStatement pstm = conn.prepareStatement(sql);
+             ResultSet rs = pstm.executeQuery()) {
+
+            while (rs.next()) {
+                CriancaDTO crianca = new CriancaDTO();
+                crianca.setId_crianca(rs.getInt("id_crianca"));
+                crianca.setNome(rs.getString("nome"));
+                criancas.add(crianca);
+            }
+        }
+        return criancas;
     }
 }
