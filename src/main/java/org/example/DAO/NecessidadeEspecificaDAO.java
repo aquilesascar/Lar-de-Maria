@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class NecessidadeEspecificaDAO {
 
     public void registrarAtendimento(NecessidadeEspecificaDTO dto) throws SQLException {
-        String sql = "INSERT INTO necessidade_especifica (idCrianca, idAlocacaoRecurso, descricao, status) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO necessidadeespecifica (idCrianca, idAlocacaoRecurso, descricao, status) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = ConexaoMySQL.getConnection();
              PreparedStatement pstm = conn.prepareStatement(sql)) {
@@ -25,5 +25,7 @@ public class NecessidadeEspecificaDAO {
             pstm.executeUpdate();
         }
     }
+
+
 
 }

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConexaoMySQL {
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/lardemaria_doacao?useTimezone=true&serverTimezone=UTC";
     private static final String USUARIO = "root"; // Ex: root
-    private static final String SENHA = "Aquiles";     // A senha do seu usuário
+    private static final String SENHA = "root";     // A senha do seu usuário
 
     public static Connection getConnection() throws SQLException {
         try {
