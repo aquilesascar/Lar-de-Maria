@@ -34,6 +34,13 @@ public class TelaPrincipal extends JFrame {
         });
         painel.add(btnCrianca);
 
+        // Botao Cadastro de Membro da Equipe
+        JButton btnMembroEquipe = new JButton("Cadastrar Membro da Equipe");
+        btnMembroEquipe.addActionListener((ActionEvent e) -> {
+            new TelaCadastroMembroEquipe().setVisible(true);
+        });
+        painel.add(btnMembroEquipe);
+
         add(painel);
     }
 }
