@@ -2,45 +2,35 @@ package org.example.View;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 public class TelaPrincipal extends JFrame {
 
     public TelaPrincipal() {
         setTitle("Sistema Lar de Maria");
-        setSize(400, 200);
+        setSize(400, 250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Painel principal
-        JPanel painel = new JPanel();
-        painel.setLayout(new GridLayout(3, 1, 10, 10));
+        JPanel painel = new JPanel(new GridLayout(4, 1, 10, 10));
 
         JLabel titulo = new JLabel("Bem-vindo ao sistema", SwingConstants.CENTER);
         titulo.setFont(new Font("Arial", Font.BOLD, 16));
         painel.add(titulo);
 
-        // Botão Campanha
-        JButton btnCampanha = new JButton("Cadastrar Campanha");
-        btnCampanha.addActionListener((ActionEvent e) -> {
-            new TelaCadastroCampanha().setVisible(true);
-        });
-        painel.add(btnCampanha);
+        JButton btnCadastro = new JButton("Cadastrar");
+        btnCadastro.addActionListener(e -> new TelaCadastro());
 
-        // Botão Criança
-        JButton btnCrianca = new JButton("Cadastrar Criança");
-        btnCrianca.addActionListener((ActionEvent e) -> {
-            new TelaCadastroCrianca().setVisible(true);
-        });
-        painel.add(btnCrianca);
+        JButton btnAtualizar = new JButton("Atualizar");
+        btnAtualizar.addActionListener(e -> new TelaAtualizacao());
 
-        // Botao Cadastro de Membro da Equipe
-        JButton btnMembroEquipe = new JButton("Cadastrar Membro da Equipe");
-        btnMembroEquipe.addActionListener((ActionEvent e) -> {
-            new TelaCadastroMembroEquipe().setVisible(true);
-        });
-        painel.add(btnMembroEquipe);
+        JButton btnExcluir = new JButton("Excluir");
+        btnExcluir.addActionListener(e -> new TelaExclusao());
+
+        painel.add(btnCadastro);
+        painel.add(btnAtualizar);
+        painel.add(btnExcluir);
 
         add(painel);
+        setVisible(true);
     }
 }
