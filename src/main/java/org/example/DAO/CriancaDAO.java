@@ -1,4 +1,5 @@
 package org.example.DAO;
+
 import org.example.Connection.ConexaoMySQL;
 import org.example.DTO.CriancaDTO;
 
@@ -10,16 +11,20 @@ import java.sql.Types;
 
 public class CriancaDAO {
 
+    /**
+     * Insere uma nova criança no banco de dados.
+     * @param criancaDTO Objeto DTO com todas as informações da criança.
+     * @throws SQLException se ocorrer um erro durante a operação no banco.
+     */
     public void cadastrarCrianca(CriancaDTO criancaDTO) throws SQLException {
         // SQL para inserção na tabela 'crianca'
-        String sql = "INSERT INTO crianca (nome, data_nascimento, genero, data_entrada, " +
-                "motivo_acolhimento, condicoes_medicas, escola, data_saida, motivo_saida, " +
-                "logradouro, numero, complemento, bairro, cidade, estado) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO crianca (nome, data_nascimento, genero, data_entrada, "
+                + "motivo_acolhimento, condicoes_medicas, escola, data_saida, motivo_saida, "
+                + "logradouro, numero, complemento, bairro, cidade, estado) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         // Usa o try-with-resources para garantir que a conexão e o statement sejam fechados
-        try (Connection conn = new ConexaoMySQL().getConnection();
-             PreparedStatement pstm = conn.prepareStatement(sql)) {
+        try (Connection conn = new ConexaoMySQL().getConnection(); PreparedStatement pstm = conn.prepareStatement(sql)) {
 
             // Define os parâmetros do PreparedStatement com base no DTO
             pstm.setString(1, criancaDTO.getNome());
