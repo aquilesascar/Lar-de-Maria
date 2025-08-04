@@ -1,11 +1,16 @@
 package org.example;
+import org.example.View.TelaNecessidadeEspecifica;
 
-import org.example.View.TelaPrincipal;
-import javax.swing.*;
+import org.example.View.TelaRegistrarEntrega;
 
 public class Main {
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new TelaPrincipal().setVisible(true));
+        new TelaNecessidadeEspecifica().setVisible(true);
+        new TelaRegistrarEntrega().setVisible(true);
+
+        // Garante que a interface gráfica seja executada na thread de eventos da AWT (EDT)
+
     }
 }
+

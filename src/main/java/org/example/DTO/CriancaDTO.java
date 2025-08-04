@@ -152,7 +152,6 @@ public class CriancaDTO {
 
     @Override
     public String toString() {
-        return nome + " (ID: " + id_crianca + ")";
+        return this.getNome(); // Retorna o nome da criança como texto
     }
 }
-

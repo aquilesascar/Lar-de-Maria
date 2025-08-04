@@ -1,4 +1,5 @@
 package org.example.DAO;
+
 import org.example.Connection.ConexaoMySQL;
 import org.example.DTO.CriancaDTO;
 
@@ -51,11 +52,12 @@ public class CriancaDAO {
         }
     }
 
-    public List<CriancaDTO> listarCriancas() {
-        List<CriancaDTO> lista = new ArrayList<>();
-        String sql = "SELECT id_crianca, nome FROM crianca";
 
-        try (Connection conn = new ConexaoMySQL().getConnection();
+    public List<CriancaDTO> listarCriancas() throws SQLException {
+        List<CriancaDTO> criancas = new ArrayList<>();
+        String sql = "SELECT id_crianca, nome FROM crianca ORDER BY nome ASC";
+      
+        try (Connection conn = new ConexaoMySQL.getConnection();
              PreparedStatement pstm = conn.prepareStatement(sql);
              ResultSet rs = pstm.executeQuery()) {
 
@@ -87,5 +89,9 @@ public class CriancaDAO {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + e.getMessage());
         }
+                criancas.add(crianca);
+            }
+        }
+        return criancas;
     }
 }

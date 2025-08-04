@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class TelaPrincipal extends JFrame {
 
-    public TelaPrincipal() {
+    public  TelaPrincipal() {
         setTitle("Sistema Lar de Maria");
         setSize(400, 250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,6 +29,13 @@ public class TelaPrincipal extends JFrame {
         painel.add(btnCadastro);
         painel.add(btnAtualizar);
         painel.add(btnExcluir);
+
+
+        JButton btnDoador = new JButton("Cadastrar Doador");
+        btnDoador.addActionListener((ActionEvent e) -> {
+            //new TelaCadastroDoador().setVisible(true);
+        });
+        painel.add(btnDoador);
 
         add(painel);
         setVisible(true);
