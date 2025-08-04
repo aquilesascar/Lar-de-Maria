@@ -6,12 +6,9 @@ public class NecessidadeEspecificaDTO {
 
     private int idNecessidade;
     private int idCrianca;
-    private int idAlocacaoRecurso;
     private String descricao;
     private String status;
     private LocalDateTime dataRegistro;
-
-    // Getters e Setters para todos os campos
 
     public int getIdNecessidade() {
         return idNecessidade;
@@ -27,14 +24,6 @@ public class NecessidadeEspecificaDTO {
 
     public void setIdCrianca(int idCrianca) {
         this.idCrianca = idCrianca;
-    }
-
-    public int getIdAlocacaoRecurso() {
-        return idAlocacaoRecurso;
-    }
-
-    public void setIdAlocacaoRecurso(int idAlocacaoRecurso) {
-        this.idAlocacaoRecurso = idAlocacaoRecurso;
     }
 
     public String getDescricao() {

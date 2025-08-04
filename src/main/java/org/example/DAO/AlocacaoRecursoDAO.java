@@ -13,23 +13,45 @@ import java.util.ArrayList;
 import java.util.List;
 
     public class AlocacaoRecursoDAO {
-    public List<AlocacaoDTO> listarAlocacoes() throws SQLException {
-        List<AlocacaoDTO> alocacoes = new ArrayList<>();
-        String sql = "SELECT id_alocacao, descricao FROM alocacaorecurso WHERE categoria_destino = 'Necessidade Específica de Menina' ORDER BY data_alocacao DESC";
+        /**
+         * Lista todas as alocações de recursos associadas a uma necessidade específica de uma criança.
+         * @param id_crianca O ID da criança para filtrar as necessidades e alocações.
+         * @return Uma lista de AlocacaoRecursoDTO.
+         * @throws SQLException
+         */
+        public List<AlocacaoRecursoDTO> listarAlocacoesPorCrianca(int id_crianca) throws SQLException {
+            List<AlocacaoRecursoDTO> alocacoes = new ArrayList<>();
 
-        try (Connection conn = ConexaoMySQL.getConnection();
-             PreparedStatement pstm = conn.prepareStatement(sql);
-             ResultSet rs = pstm.executeQuery()) {
+            // CORREÇÃO 1: Seleciona todas as colunas da tabela alocacaorecurso (usando o alias 'a').
+            // CORREÇÃO 2: Usa um placeholder '?' na cláusula WHERE.
+            String sql = "SELECT a.* FROM alocacaorecurso AS a " +
+                    "JOIN necessidadeespecifica AS n ON a.id_necessidade = n.id_necessidade " +
+                    "WHERE n.idCrianca = ?";
 
-            while (rs.next()) {
-                AlocacaoDTO alocacao = new AlocacaoDTO();
-                alocacao.setIdAlocacao(rs.getInt("id_alocacao"));
-                alocacao.setDescricao(rs.getString("descricao"));
-                alocacoes.add(alocacao);
+            try (Connection conn = ConexaoMySQL.getConnection();
+                 PreparedStatement pstm = conn.prepareStatement(sql)) {
+
+                // CORREÇÃO 3: Define o valor do placeholder.
+                pstm.setInt(1, id_crianca);
+
+                try (ResultSet rs = pstm.executeQuery()) {
+                    while (rs.next()) {
+                        AlocacaoRecursoDTO alocacao = new AlocacaoRecursoDTO();
+
+                        // CORREÇÃO 4: Popula o DTO com os dados corretos do ResultSet.
+                        alocacao.setIdAlocacao(rs.getInt("id_alocacao"));
+                        alocacao.setDescricao(rs.getString("descricao"));
+                        alocacao.setQuantidadeAlocada(rs.getInt("quantidade_alocada"));
+                        alocacao.setValorAlocado(rs.getFloat("valor_alocado"));
+                        alocacao.setDestino(rs.getString("destino"));
+                        alocacao.setDataDecisao(rs.getTimestamp("data_descisao"));
+
+                        alocacoes.add(alocacao);
+                    }
+                }
             }
+            return alocacoes;
         }
-        return alocacoes;
-    }
 
 
 
