@@ -35,10 +35,9 @@ public class TelaPrincipal extends JFrame {
         painel.add(btnCrianca);
 
 
-
         JButton btnDoador = new JButton("Cadastrar Doador");
         btnDoador.addActionListener((ActionEvent e) -> {
-            new TelaCadastroDoador().setVisible(true);
+            //new TelaCadastroDoador().setVisible(true);
         });
         painel.add(btnDoador);
 

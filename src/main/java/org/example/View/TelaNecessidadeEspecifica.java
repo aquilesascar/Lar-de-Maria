@@ -1,9 +1,7 @@
 package org.example.View;
 
-import org.example.DAO.AlocacaoRecursoDAO;
 import org.example.DAO.CriancaDAO;
 import org.example.DAO.NecessidadeEspecificaDAO;
-import org.example.DTO.AlocacaoDTO;
 import org.example.DTO.CriancaDTO;
 import org.example.DTO.NecessidadeEspecificaDTO;
 
@@ -13,28 +11,26 @@ import java.awt.event.ItemEvent;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Vector;
 import java.util.List;
+import java.util.Vector;
 
-public class TelaAtenderNecessidade extends JFrame {
+public class TelaNecessidadeEspecifica extends JFrame {
 
     private JComboBox<CriancaDTO> cbCriancas;
-    private JComboBox<AlocacaoDTO> cbAlocacoes;
     private JTextArea txtDescricao;
     private JComboBox<String> cbStatus;
     private JButton btnSalvar;
-    private JTextField txtDataRegistro; // <<< declarada aqui
+    private JTextField txtDataRegistro;
     private JLabel lblMembroEquipe;
     private JComboBox<String> cbMembrosEquipe;
 
-    public TelaAtenderNecessidade() {
+    public TelaNecessidadeEspecifica() {
         setTitle("Atender Necessidade Específica");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
 
-        // Criação do painel e constraints ANTES de usar
         JPanel formPanel = new JPanel(new GridBagLayout());
         formPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         GridBagConstraints gbc = new GridBagConstraints();
@@ -58,35 +54,27 @@ public class TelaAtenderNecessidade extends JFrame {
         gbc.gridx = 1; gbc.anchor = GridBagConstraints.WEST;
         formPanel.add(cbCriancas, gbc);
 
-        // Linha 2: Seleção da Alocação de Recurso
-        gbc.gridx = 0; gbc.gridy = 2; gbc.anchor = GridBagConstraints.EAST;
-        formPanel.add(new JLabel("Alocação de Recurso:"), gbc);
-        cbAlocacoes = new JComboBox<>();
-        gbc.gridx = 1; gbc.anchor = GridBagConstraints.WEST;
-        formPanel.add(cbAlocacoes, gbc);
-
-        // Linha 3: Descrição da Necessidade
-        gbc.gridx = 0; gbc.gridy = 3; gbc.anchor = GridBagConstraints.NORTHEAST;
+        // Linha 2: Descrição
+        gbc.gridx = 0; gbc.gridy = 2; gbc.anchor = GridBagConstraints.NORTHEAST;
         formPanel.add(new JLabel("Descrição:"), gbc);
         txtDescricao = new JTextArea(5, 30);
         gbc.gridx = 1; gbc.anchor = GridBagConstraints.WEST;
         formPanel.add(new JScrollPane(txtDescricao), gbc);
 
-        // Linha 4: Status
-        gbc.gridx = 0; gbc.gridy = 4; gbc.anchor = GridBagConstraints.EAST;
+        // Linha 3: Status
+        gbc.gridx = 0; gbc.gridy = 3; gbc.anchor = GridBagConstraints.EAST;
         formPanel.add(new JLabel("Status:"), gbc);
-        cbStatus = new JComboBox<>(new String[]{"Pendente", "Em Andamento", "Atendida"});
+        cbStatus = new JComboBox<>(new String[]{"CONCLUIDO", "EM DESENVOLVIMENTO"});
         gbc.gridx = 1; gbc.anchor = GridBagConstraints.WEST;
         formPanel.add(cbStatus, gbc);
 
-        // Linha 5: Membro da Equipe (Condicional)
+        // Linha 4: Membro da Equipe (Condicional - opcional, mantido mas invisível)
         lblMembroEquipe = new JLabel("Membro Responsável:");
         cbMembrosEquipe = new JComboBox<>();
-        gbc.gridx = 0; gbc.gridy = 5; gbc.anchor = GridBagConstraints.EAST;
+        gbc.gridx = 0; gbc.gridy = 4; gbc.anchor = GridBagConstraints.EAST;
         formPanel.add(lblMembroEquipe, gbc);
         gbc.gridx = 1; gbc.anchor = GridBagConstraints.WEST;
         formPanel.add(cbMembrosEquipe, gbc);
-        // Inicia os componentes como invisíveis
         lblMembroEquipe.setVisible(false);
         cbMembrosEquipe.setVisible(false);
 
@@ -98,73 +86,54 @@ public class TelaAtenderNecessidade extends JFrame {
         add(formPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
 
-        // Carregar dados nos ComboBoxes
         carregarComboBoxes();
 
-        // --- LISTENERS ---
-        // Listener para o ComboBox de Status
         cbStatus.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
-                boolean atendida = "Atendida".equals(e.getItem());
+                boolean atendida = "CONCLUIDO".equals(e.getItem());
                 lblMembroEquipe.setVisible(atendida);
                 cbMembrosEquipe.setVisible(atendida);
                 if (atendida) {
-                    carregarMembrosEquipe();
+                    carregarMembrosEquipe(); // opcional, caso deseje implementar
                 }
             }
         });
 
-        // Ação do botão
         btnSalvar.addActionListener(e -> registrarAtendimento());
     }
 
     private void carregarMembrosEquipe() {
-//        try {
-//            UsuarioDAO usuarioDAO = new UsuarioDAO();
-//            List<UsuarioDTO> membros = usuarioDAO.listarUsuarios();
-//            cbMembrosEquipe.setModel(new DefaultComboBoxModel<>(new Vector<>(membros)));
-//        } catch (SQLException e) {
-//            JOptionPane.showMessageDialog(this, "Erro ao carregar membros da equipe: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-//        }
+        // Implementar se desejar carregar membros da equipe
     }
 
     private void carregarComboBoxes() {
         try {
-            // Carregar Crianças
             CriancaDAO criancaDAO = new CriancaDAO();
             List<CriancaDTO> criancas = criancaDAO.listarCriancas();
             cbCriancas.setModel(new DefaultComboBoxModel<>(new Vector<>(criancas)));
-
-            // Carregar Alocações
-            AlocacaoRecursoDAO alocacaoDAO = new AlocacaoRecursoDAO();
-            List<AlocacaoDTO> alocacoes = alocacaoDAO.listarAlocacoes();
-            cbAlocacoes.setModel(new DefaultComboBoxModel<>(new Vector<>(alocacoes)));
-
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Erro ao carregar dados: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void registrarAtendimento() {
-        if (cbCriancas.getSelectedIndex() == -1 || cbAlocacoes.getSelectedIndex() == -1 || txtDescricao.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, selecione uma criança, uma alocação e preencha a descrição.", "Validação", JOptionPane.WARNING_MESSAGE);
+        if (cbCriancas.getSelectedIndex() == -1 || txtDescricao.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecione uma criança e preencha a descrição.", "Validação", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         try {
             CriancaDTO criancaSelecionada = (CriancaDTO) cbCriancas.getSelectedItem();
-            AlocacaoDTO alocacaoSelecionada = (AlocacaoDTO) cbAlocacoes.getSelectedItem();
 
             NecessidadeEspecificaDTO dto = new NecessidadeEspecificaDTO();
             dto.setIdCrianca(criancaSelecionada.getId_crianca());
-            dto.setIdAlocacaoRecurso(alocacaoSelecionada.getIdAlocacao());
             dto.setDescricao(txtDescricao.getText());
             dto.setStatus((String) cbStatus.getSelectedItem());
 
             NecessidadeEspecificaDAO dao = new NecessidadeEspecificaDAO();
             dao.registrarAtendimento(dto);
 
-            JOptionPane.showMessageDialog(this, "Atendimento de necessidade registrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Atendimento registrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             txtDescricao.setText("");
 
         } catch (SQLException e) {
