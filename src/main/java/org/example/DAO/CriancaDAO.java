@@ -3,7 +3,9 @@ package org.example.DAO;
 import org.example.Connection.ConexaoMySQL;
 import org.example.DTO.CriancaDTO;
 
+import javax.swing.*;
 import java.sql.*;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,13 +52,12 @@ public class CriancaDAO {
         }
     }
 
-    // DAO/CriancaDAO.java (Método auxiliar para listar crianças)
-// Adicione este método à sua classe CriancaDAO existente.
 
-    public List<CriancaDTO> listarCriancas() throws SQLException {
-        List<CriancaDTO> criancas = new ArrayList<>();
-        String sql = "SELECT id_crianca, nome FROM crianca ORDER BY nome ASC";
-        try (Connection conn = ConexaoMySQL.getConnection();
+    public List<CriancaDTO> listarCriancas() {
+        List<CriancaDTO> lista = new ArrayList<>();
+        String sql = "SELECT id_crianca, nome FROM crianca";
+
+        try (Connection conn = new ConexaoMySQL().getConnection();
              PreparedStatement pstm = conn.prepareStatement(sql);
              ResultSet rs = pstm.executeQuery()) {
 
@@ -64,9 +65,30 @@ public class CriancaDAO {
                 CriancaDTO crianca = new CriancaDTO();
                 crianca.setId_crianca(rs.getInt("id_crianca"));
                 crianca.setNome(rs.getString("nome"));
-                criancas.add(crianca);
+                lista.add(crianca);
             }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return criancas;
+
+        return lista;
+    }
+
+
+    public void atualizarCampoCrianca(int idCrianca, String campo, String novoValor) {
+        String sql = "UPDATE crianca SET " + campo + " = ? WHERE id_crianca = ?";
+
+        try (Connection conn = new ConexaoMySQL().getConnection();
+             PreparedStatement pstm = conn.prepareStatement(sql)) {
+
+            pstm.setString(1, novoValor);
+            pstm.setInt(2, idCrianca);
+            pstm.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + e.getMessage());
+        }
     }
 }

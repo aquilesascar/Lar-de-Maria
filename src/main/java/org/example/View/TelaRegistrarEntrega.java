@@ -88,18 +88,13 @@ public class TelaRegistrarEntrega extends JFrame {
      * Carrega a lista de crianças (que não muda) e atualiza as alocações pela primeira vez.
      */
     private void carregarDadosIniciais() {
-        try {
-            CriancaDAO criancaDAO = new CriancaDAO();
-            List<CriancaDTO> criancas = criancaDAO.listarCriancas();
-            cbCriancas.setModel(new DefaultComboBoxModel<>(new Vector<>(criancas)));
+        CriancaDAO criancaDAO = new CriancaDAO();
+        List<CriancaDTO> criancas = criancaDAO.listarCriancas();
+        cbCriancas.setModel(new DefaultComboBoxModel<>(new Vector<>(criancas)));
 
-            // Chama o método para carregar as alocações da primeira criança da lista
-            atualizarAlocacoes();
+        // Chama o método para carregar as alocações da primeira criança da lista
+        atualizarAlocacoes();
 
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Erro ao carregar dados iniciais: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
-        }
     }
 
     /**

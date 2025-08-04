@@ -107,13 +107,9 @@ public class TelaNecessidadeEspecifica extends JFrame {
     }
 
     private void carregarComboBoxes() {
-        try {
-            CriancaDAO criancaDAO = new CriancaDAO();
-            List<CriancaDTO> criancas = criancaDAO.listarCriancas();
-            cbCriancas.setModel(new DefaultComboBoxModel<>(new Vector<>(criancas)));
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Erro ao carregar dados: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-        }
+        CriancaDAO criancaDAO = new CriancaDAO();
+        List<CriancaDTO> criancas = criancaDAO.listarCriancas();
+        cbCriancas.setModel(new DefaultComboBoxModel<>(new Vector<>(criancas)));
     }
 
     private void registrarAtendimento() {
