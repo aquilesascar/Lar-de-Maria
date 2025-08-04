@@ -3,11 +3,11 @@ package org.example.DAO;
 import org.example.Connection.ConexaoMySQL;
 import org.example.DTO.CriancaDTO;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Types;
+import javax.swing.*;
+import java.sql.*;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CriancaDAO {
 
@@ -53,6 +53,46 @@ public class CriancaDAO {
 
             // Executa a inserção
             pstm.executeUpdate();
+        }
+    }
+
+
+    public List<CriancaDTO> listarCriancas() {
+        List<CriancaDTO> lista = new ArrayList<>();
+        String sql = "SELECT id_crianca, nome FROM crianca";
+
+        try (Connection conn = new ConexaoMySQL().getConnection();
+             PreparedStatement pstm = conn.prepareStatement(sql);
+             ResultSet rs = pstm.executeQuery()) {
+
+            while (rs.next()) {
+                CriancaDTO crianca = new CriancaDTO();
+                crianca.setId_crianca(rs.getInt("id_crianca"));
+                crianca.setNome(rs.getString("nome"));
+                lista.add(crianca);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return lista;
+    }
+
+
+    public void atualizarCampoCrianca(int idCrianca, String campo, String novoValor) {
+        String sql = "UPDATE crianca SET " + campo + " = ? WHERE id_crianca = ?";
+
+        try (Connection conn = new ConexaoMySQL().getConnection();
+             PreparedStatement pstm = conn.prepareStatement(sql)) {
+
+            pstm.setString(1, novoValor);
+            pstm.setInt(2, idCrianca);
+            pstm.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + e.getMessage());
         }
     }
 }
