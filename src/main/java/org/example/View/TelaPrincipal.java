@@ -2,6 +2,7 @@ package org.example.View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class TelaPrincipal extends JFrame {
 
@@ -11,7 +12,7 @@ public class TelaPrincipal extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JPanel painel = new JPanel(new GridLayout(4, 1, 10, 10));
+        JPanel painel = new JPanel(new GridLayout(6, 1, 10, 10));
 
         JLabel titulo = new JLabel("Bem-vindo ao sistema", SwingConstants.CENTER);
         titulo.setFont(new Font("Arial", Font.BOLD, 16));
@@ -30,12 +31,25 @@ public class TelaPrincipal extends JFrame {
         painel.add(btnAtualizar);
         painel.add(btnExcluir);
 
-
+        /*
         JButton btnDoador = new JButton("Cadastrar Doador");
         btnDoador.addActionListener((ActionEvent e) -> {
             //new TelaCadastroDoador().setVisible(true);
         });
         painel.add(btnDoador);
+         */
+
+        JButton btnNecessidadeEspecifica = new JButton("Registrar Necessidade");
+        btnNecessidadeEspecifica.addActionListener((ActionEvent e) -> {
+            new TelaNecessidadeEspecifica().setVisible(true);
+        });
+        painel.add(btnNecessidadeEspecifica);
+
+        JButton btnRegistrarEntrega = new JButton("Registrar Entrega");
+        btnRegistrarEntrega.addActionListener((ActionEvent e) -> {
+            new TelaRegistrarEntrega().setVisible(true);
+        });
+        painel.add(btnRegistrarEntrega);
 
         add(painel);
         setVisible(true);

@@ -6,6 +6,7 @@ import org.example.DTO.CriancaDTO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 import java.util.List;
 
 public class TelaAtualizarCrianca extends JFrame {
