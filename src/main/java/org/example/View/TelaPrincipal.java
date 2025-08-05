@@ -51,12 +51,12 @@ public class TelaPrincipal extends JFrame {
         });
         painel.add(btnRegistrarEntrega);
 
-        JButton btnRegistrarDoacao = new JButton("Registrar Doação");
+        /*JButton btnRegistrarDoacao = new JButton("Registrar Doação");
         btnRegistrarDoacao.addActionListener((ActionEvent e) -> {
             new TelaCadastroDoacao().setVisible(true);
         });
         painel.add(btnRegistrarDoacao);
-
+*/
         JButton btnListarCampanhas = new JButton("Listar Campanhas");
         btnListarCampanhas.addActionListener((ActionEvent e) -> {
             new TelaListarCampanhas().setVisible(true);
