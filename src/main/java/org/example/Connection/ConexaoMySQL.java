@@ -9,7 +9,7 @@ public class ConexaoMySQL {
     // URL, usuário e senha para a conexão com o banco de dados.
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/lardemaria_doacao?useTimezone=true&serverTimezone=UTC";
     private static final String USUARIO = "root"; // Seu usuário do MySQL
-    private static final String SENHA = "root";     // Sua senha do MySQL
+    private static final String SENHA = "Aquiles";     // Sua senha do MySQL
 
     /**
      * Estabelece e retorna uma conexão com o banco de dados.
