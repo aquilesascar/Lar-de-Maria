@@ -13,8 +13,12 @@ public class TelaRelatorios extends javax.swing.JFrame {
 
         JButton btnMediaDoacoes = new JButton("Relatório de Media de Doações");
         btnMediaDoacoes.addActionListener(e -> new TelaRelatorioMediaDoacoes().setVisible(true));
+        JButton btnRelatorioIdade = new JButton("Relatório de Idade");
+        btnRelatorioIdade.addActionListener(e -> new TelaRelatorioIdade().setVisible(true));
 
         add(btnMediaDoacoes);
+        setVisible(true);
+        add(btnRelatorioIdade);
         setVisible(true);
     }
 }
