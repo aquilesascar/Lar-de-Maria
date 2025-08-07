@@ -30,10 +30,14 @@ public class TelaPrincipal extends JFrame {
         JButton btnRelatorios = new JButton("Relatórios");
         btnRelatorios.addActionListener(e -> new TelaRelatorios());
 
+        JButton btnListar = new JButton("Listar");
+        btnListar.addActionListener(e -> new TelaListar());
+
         painel.add(btnCadastro);
         painel.add(btnAtualizar);
         painel.add(btnExcluir);
         painel.add(btnRelatorios);
+        painel.add(btnListar);
 
         add(painel);
         setVisible(true);
