@@ -27,9 +27,13 @@ public class TelaPrincipal extends JFrame {
         JButton btnExcluir = new JButton("Excluir");
         btnExcluir.addActionListener(e -> new TelaExclusao());
 
+        Button btnRelatorios = new Button("Relatórios");
+        btnRelatorios.addActionListener(e -> new TelaRelatorios());
+
         painel.add(btnCadastro);
         painel.add(btnAtualizar);
         painel.add(btnExcluir);
+        painel.add(btnRelatorios);
 
 
         JButton btnDoador = new JButton("Cadastrar Doador");
@@ -69,7 +73,11 @@ public class TelaPrincipal extends JFrame {
         });
         painel.add(btnListarVoluntarios);
 
+
+
         add(painel);
         setVisible(true);
+
     }
+
 }
