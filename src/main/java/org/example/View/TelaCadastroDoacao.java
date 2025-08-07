@@ -17,10 +17,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.*;
 
-/**
- *
- * @author Estella1
- */
+
 public class TelaCadastroDoacao extends javax.swing.JFrame {
 
     /**
@@ -38,7 +35,7 @@ public class TelaCadastroDoacao extends javax.swing.JFrame {
         this.addWindowListener(new java.awt.event.WindowAdapter() {
         @Override
         public void windowOpened(java.awt.event.WindowEvent evt) {
-            carregarCampanhas(); // chama sua função            
+            carregarCampanhas(); // chama sua função
             carregarDoadores();
         }
     });

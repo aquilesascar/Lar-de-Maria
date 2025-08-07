@@ -59,7 +59,6 @@ public class AlocacaoRecursoDTO {
         this.dataDecisao = dataDecisao;
     }
 
-    // Sobrescreve o toString para exibir um texto amigável no JComboBox
     @Override
     public String toString() {
         return getDescricao() + " (ID: " + getIdAlocacao() + ")";

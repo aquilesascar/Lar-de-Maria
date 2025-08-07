@@ -14,14 +14,14 @@ public class TelaRelatorioIdade extends JFrame {
 
     private JTable tabela;
     private DefaultTableModel modeloTabela;
-    private JSpinner spinnerIdadeMin, spinnerIdadeMax; // Usando JSpinner para facilitar a entrada de números
+    private JSpinner spinnerIdadeMin, spinnerIdadeMax;
     private JButton botaoFiltrar;
 
     public TelaRelatorioIdade() {
         super("Relatório de Crianças por Faixa Etária");
 
         initComponents();
-        // Carrega os dados iniciais com o filtro padrão (0 a 18 anos)
+
         carregarDados();
     }
 
@@ -51,7 +51,6 @@ public class TelaRelatorioIdade extends JFrame {
 
         add(painelFiltros, BorderLayout.NORTH);
 
-        // --- Tabela de Resultados (Centro) ---
         String[] colunas = {"Faixa Etária", "Quantidade de Crianças"};
         modeloTabela = new DefaultTableModel(colunas, 0);
         tabela = new JTable(modeloTabela);

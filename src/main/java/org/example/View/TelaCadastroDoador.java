@@ -11,10 +11,7 @@ import org.example.DTO.PessoaJuridicaDTO;
 import javax.swing.*;
 import java.sql.SQLException;
 
-/**
- *
- * @author Estella1
- */
+
 public class TelaCadastroDoador extends javax.swing.JFrame {
 
     /**

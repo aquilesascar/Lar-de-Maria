@@ -12,18 +12,9 @@ import java.util.List;
 
 public class RelatorioIdadeCriancaDAO {
 
-    /**
-     * Busca um relatório de crianças agrupadas por faixa etária, dentro de um intervalo de idade especificado.
-     * @param idadeMin A idade mínima para o filtro.
-     * @param idadeMax A idade máxima para o filtro.
-     * @return Uma lista de RelatorioIdadeCriancaDTO com os dados agregados.
-     * @throws SQLException
-     */
     public List<RelatorioIdadeCriancaDTO> getRelatorioPorIdade(int idadeMin, int idadeMax) throws SQLException {
         List<RelatorioIdadeCriancaDTO> relatorio = new ArrayList<>();
 
-        // Esta query SQL calcula a idade, define as faixas etárias usando CASE,
-        // filtra pelo intervalo de idade e agrupa os resultados para contagem.
         String sql = "SELECT " +
                 "    CASE " +
                 "        WHEN TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()) BETWEEN 0 AND 6 THEN '0-6 anos' " +

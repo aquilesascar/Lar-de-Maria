@@ -25,15 +25,10 @@ public class TelaListarCampanhas extends JFrame {
     private void initComponents() {
         setTitle("Relatório de Campanhas");
         setSize(800, 600);
-        /*
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-         */
 
         painelPrincipal = new JPanel(new BorderLayout());
 
-        // Configuração da JTable, que exibirá os dados.
-        // É importante colocá-la dentro de um JScrollPane para ter rolagem.
+
         tabelaCampanhas = new JTable();
         scrollPane = new JScrollPane(tabelaCampanhas);
         painelPrincipal.add(scrollPane, BorderLayout.CENTER);
@@ -52,10 +47,8 @@ public class TelaListarCampanhas extends JFrame {
     private void carregarDadosNaTabela() {
         ConsultaCampanhaDAO dao = new ConsultaCampanhaDAO();
         try {
-            // Busca a lista de campanhas no banco de dados através do DAO.
             List<ConsultaCampanha> lista = dao.getConsultaCampanha();
 
-            // Cria um modelo de tabela para organizar os dados em colunas.
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.addColumn("Nome da Campanha");
             modelo.addColumn("Valor Total Arrecadado");
@@ -70,11 +63,9 @@ public class TelaListarCampanhas extends JFrame {
                 });
             }
 
-            // Atribui o modelo à sua JTable.
             tabelaCampanhas.setModel(modelo);
 
         } catch (SQLException e) {
-            // Em caso de erro no banco de dados, exibe uma mensagem amigável.
             JOptionPane.showMessageDialog(this, "Erro ao carregar os dados: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }

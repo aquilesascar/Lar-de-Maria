@@ -98,7 +98,7 @@ public class TelaNecessidadeEspecifica extends JFrame {
                 lblMembroEquipe.setVisible(atendida);
                 cbMembrosEquipe.setVisible(atendida);
                 if (atendida) {
-                    carregarMembrosEquipe(); // opcional, caso deseje implementar
+                    carregarMembrosEquipe();
                 }
             }
         });

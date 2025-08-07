@@ -4,8 +4,6 @@ import java.time.LocalDate;
 
 public class TrabalhoVoluntarioDTO extends DoacaoDTO{
     private String descricao_serviço;
-
-
     private LocalDate data_inicio;
     private LocalDate data_final;
 
@@ -40,7 +38,5 @@ public class TrabalhoVoluntarioDTO extends DoacaoDTO{
     public void setDescricao_serviço(String descricao_serviço) {
         this.descricao_serviço = descricao_serviço;
     }
-
-
 
 }

@@ -27,7 +27,7 @@ public class TelaRegistrarEntrega extends JFrame {
 
     public TelaRegistrarEntrega() {
         setTitle("Registrar Distribuição de Recurso");
-        setSize(600, 300); // Ajuste de altura para os campos
+        setSize(600, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
@@ -75,8 +75,6 @@ public class TelaRegistrarEntrega extends JFrame {
         add(formPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
 
-        // --- LÓGICA DE EVENTOS ---
-        // Adiciona o "ouvinte" que tornará a tela interativa
         cbCriancas.addActionListener(e -> atualizarAlocacoes());
         btnRegistrar.addActionListener(e -> registrarEntrega());
 
@@ -84,23 +82,15 @@ public class TelaRegistrarEntrega extends JFrame {
         carregarDadosIniciais();
     }
 
-    /**
-     * Carrega a lista de crianças (que não muda) e atualiza as alocações pela primeira vez.
-     */
     private void carregarDadosIniciais() {
         CriancaDAO criancaDAO = new CriancaDAO();
         List<CriancaDTO> criancas = criancaDAO.listarCriancas();
         cbCriancas.setModel(new DefaultComboBoxModel<>(new Vector<>(criancas)));
 
-        // Chama o método para carregar as alocações da primeira criança da lista
         atualizarAlocacoes();
 
     }
 
-    /**
-     * Atualiza o ComboBox de alocações com base na criança atualmente selecionada.
-     * Este método é chamado tanto no início quanto toda vez que o usuário muda a seleção.
-     */
     private void atualizarAlocacoes() {
         CriancaDTO criancaSelecionada = (CriancaDTO) cbCriancas.getSelectedItem();
 
@@ -129,7 +119,6 @@ public class TelaRegistrarEntrega extends JFrame {
         try {
             LocalDate dataEntrega;
             try {
-                // CORREÇÃO: Lê a data do campo de texto em vez de usar a data atual
                 dataEntrega = LocalDate.parse(txtDataEntrega.getText(), dateFormatter);
             } catch (DateTimeParseException ex) {
                 JOptionPane.showMessageDialog(this, "Formato de data inválido. Use dd/mm/aaaa.", "Erro de Formato", JOptionPane.ERROR_MESSAGE);
@@ -138,7 +127,7 @@ public class TelaRegistrarEntrega extends JFrame {
 
             AlocacaoRecursoDTO alocacao = (AlocacaoRecursoDTO) cbAlocacoesPendentes.getSelectedItem();
             CriancaDTO crianca = (CriancaDTO) cbCriancas.getSelectedItem();
-            int idMembroEquipe = 1; // Placeholder: Pegue o ID do usuário logado na sessão
+            int idMembroEquipe = 1;
 
             DistribuicaoRecursoDTO dto = new DistribuicaoRecursoDTO();
             dto.setIdAlocacaoRecurso(alocacao.getIdAlocacao());
@@ -151,7 +140,6 @@ public class TelaRegistrarEntrega extends JFrame {
 
             JOptionPane.showMessageDialog(this, "Entrega registrada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
-            // Atualiza a lista de pendências
             atualizarAlocacoes();
 
         } catch (SQLException e) {

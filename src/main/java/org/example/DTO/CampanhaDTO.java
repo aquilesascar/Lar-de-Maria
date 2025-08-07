@@ -5,8 +5,8 @@ import java.util.Date;
 public class CampanhaDTO {
     private int id_campanha;
     private String nome_campanha;
-    private int meta_arrecadacao; // pode ser null
-    private String meta_descricao;    // novo campo, pode ser null
+    private int meta_arrecadacao;
+    private String meta_descricao;
     private Date data_inicio;
     private Date data_final;
 

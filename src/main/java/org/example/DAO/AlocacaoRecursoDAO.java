@@ -13,17 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
     public class AlocacaoRecursoDAO {
-        /**
-         * Lista todas as alocações de recursos associadas a uma necessidade específica de uma criança.
-         * @param id_crianca O ID da criança para filtrar as necessidades e alocações.
-         * @return Uma lista de AlocacaoRecursoDTO.
-         * @throws SQLException
-         */
+
         public List<AlocacaoRecursoDTO> listarAlocacoesPorCrianca(int id_crianca) throws SQLException {
             List<AlocacaoRecursoDTO> alocacoes = new ArrayList<>();
 
-            // CORREÇÃO 1: Seleciona todas as colunas da tabela alocacaorecurso (usando o alias 'a').
-            // CORREÇÃO 2: Usa um placeholder '?' na cláusula WHERE.
             String sql = "SELECT a.* FROM alocacaorecurso AS a " +
                     "JOIN necessidadeespecifica AS n ON a.id_necessidade = n.id_necessidade " +
                     "WHERE n.idCrianca = ?";
@@ -31,7 +24,6 @@ import java.util.List;
             try (Connection conn = ConexaoMySQL.getConnection();
                  PreparedStatement pstm = conn.prepareStatement(sql)) {
 
-                // CORREÇÃO 3: Define o valor do placeholder.
                 pstm.setInt(1, id_crianca);
 
                 try (ResultSet rs = pstm.executeQuery()) {
@@ -54,14 +46,6 @@ import java.util.List;
         }
 
 
-
-    /**
-     * Lista todas as alocações de recursos que ainda não foram entregues.
-     * A lógica identifica uma entrega pendente se o id da alocação NÃO EXISTE
-     * na tabela de distribuição.
-     * @return Uma lista de AlocacaoRecursoDTO pendentes.
-     * @throws SQLException
-     */
     public List<AlocacaoRecursoDTO> listarEntregasPendentes() throws SQLException {
         List<AlocacaoRecursoDTO> pendentes = new ArrayList<>();
         String sql = "SELECT ar.* FROM alocacaorecurso ar " +

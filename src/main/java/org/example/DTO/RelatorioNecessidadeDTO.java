@@ -1,15 +1,11 @@
 package org.example.DTO;
 
-/**
- * DTO para armazenar os dados agregados do relatório de necessidades por criança.
- */
 public class RelatorioNecessidadeDTO {
 
     private String nomeCrianca;
     private String status;
     private int totalPorStatus;
 
-    // Getters e Setters
     public String getNomeCrianca() {
         return nomeCrianca;
     }

@@ -14,10 +14,6 @@ public class TelaExclusao extends JFrame {
         JButton btnExcluirMembro = new JButton("Excluir Membro da Equipe");
         btnExcluirMembro.addActionListener(e -> new TelaExcluirMembroEquipe().setVisible(true));
 
-        // Você pode adicionar outras exclusões aqui futuramente
-        // JButton btnExcluirCampanha = new JButton("Excluir Campanha");
-        // btnExcluirCampanha.addActionListener(e -> new TelaExcluirCampanha().setVisible(true));
-
         add(btnExcluirMembro);
 
         setVisible(true);

@@ -13,7 +13,6 @@ import java.util.List;
 public class ConsultaDiasVoluntarioDAO {
 
     public List<ConsultaDiasVoluntario> consultaDiasVoluntario() throws SQLException {
-        // A sua consulta SQL já estava correta para o seu banco
         String sql = "select m.nome_completo as nome, dia.dia_semana as dia " +
                 "from membroequipe as m " +
                 "join dia_semana_voluntario as dia on m.id_doador_voluntario = dia.id_doador " +

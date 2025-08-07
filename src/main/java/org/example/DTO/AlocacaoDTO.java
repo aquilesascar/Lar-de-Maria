@@ -62,11 +62,6 @@ public class AlocacaoDTO {
         this.dataAlocacao = dataAlocacao;
     }
 
-    /**
-     * Sobrescreve o método toString para exibir a descrição no JComboBox.
-     * Isso faz com que o ComboBox mostre um texto amigável em vez do nome do objeto.
-     * @return A descrição da alocação.
-     */
     @Override
     public String toString() {
         return getDescricao();

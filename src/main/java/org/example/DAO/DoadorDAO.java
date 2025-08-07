@@ -50,9 +50,6 @@ public class DoadorDAO {
             stmt.setString(17,doador.getTipo_doador());
             stmt.executeUpdate();
 
-
-
-
         }finally {
             if(stmt != null){
                 stmt.close();

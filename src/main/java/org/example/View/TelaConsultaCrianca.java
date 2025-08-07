@@ -44,10 +44,8 @@ public class TelaConsultaCrianca extends JFrame {
     }
 
     private void carregarDadosNaTabela() {
-        // Renomeei o DAO para corresponder ao que você usou no código do relatório anterior
         ConsultaCriancaDAO dao = new ConsultaCriancaDAO();
         try {
-            // CORREÇÃO: Declara a lista com o tipo genérico correto
             List<RelatorioCriancaDTO> lista = dao.getRelatorioDemografico();
 
             DefaultTableModel modelo = new DefaultTableModel();
@@ -55,7 +53,6 @@ public class TelaConsultaCrianca extends JFrame {
             modelo.addColumn("Gênero");
             modelo.addColumn("Total de Crianças");
 
-            // Agora o loop for-each funciona corretamente
             for (RelatorioCriancaDTO item : lista) {
                 modelo.addRow(new Object[]{
                         item.getFaixaEtaria(),

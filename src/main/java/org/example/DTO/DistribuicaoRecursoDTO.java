@@ -9,7 +9,6 @@ public class DistribuicaoRecursoDTO {
     private int idMembroEquipe;
     private LocalDate dataDistribuicao;
 
-    // Getters e Setters
     public int getIdDistribuicao() {
         return idDistribuicao;
     }

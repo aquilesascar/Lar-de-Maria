@@ -21,7 +21,6 @@ public class CriancaDTO {
     private String cidade;
     private String estado;
 
-    //Getters e Setters para todos os campos
     public int getId_crianca() {
         return id_crianca;
     }
@@ -152,6 +151,6 @@ public class CriancaDTO {
 
     @Override
     public String toString() {
-        return this.getNome(); // Retorna o nome da criança como texto
+        return this.getNome();
     }
 }

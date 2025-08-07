@@ -13,8 +13,6 @@ public class TelaRelatorioMediaDoacoes extends JFrame {
     private JScrollPane scrollPane;
     private DefaultTableModel modeloTabela;
 
-
-    // Sua consulta SQL
     private static final String SQL_QUERY = "SELECT " +
             "tipo_docao AS 'Tipo de Doação', " +
             "AVG(" +
@@ -32,14 +30,12 @@ public class TelaRelatorioMediaDoacoes extends JFrame {
             "  2 DESC;";
 
     public TelaRelatorioMediaDoacoes() {
-        super("Relatório de Média de Doações"); // Chamada para o construtor de JFrame
+        super("Relatório de Média de Doações");
 
-        // Configurações da janela
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(600, 400);
-        this.setLocationRelativeTo(null); // Centraliza a janela
+        this.setLocationRelativeTo(null);
 
-        // Criação do modelo da tabela
         String[] colunas = {"Tipo de Doação", "Média de valor da Doação"};
         modeloTabela = new DefaultTableModel(colunas, 0);
 
@@ -67,7 +63,6 @@ public class TelaRelatorioMediaDoacoes extends JFrame {
                 String tipoDoacao = rs.getString("Tipo de Doação");
                 double mediaValor = rs.getDouble("Média de valor da Doação");
 
-                // Adiciona uma nova linha ao modelo da tabela
                 modeloTabela.addRow(new Object[]{tipoDoacao, String.format("%.2f", mediaValor)});
             }
 

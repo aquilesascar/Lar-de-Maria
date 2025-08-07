@@ -11,17 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConsultaCriancaDAO {
-    /**
-     * Busca no banco de dados um relatório demográfico das crianças acolhidas,
-     * agrupadas por faixa etária e gênero.
-     * @return Uma lista de RelatorioCriancaDTO com os dados agregados.
-     * @throws SQLException
-     */
+
     public List<RelatorioCriancaDTO> getRelatorioDemografico() throws SQLException {
         List<RelatorioCriancaDTO> relatorio = new ArrayList<>();
 
-        // Esta query SQL calcula a idade, define as faixas etárias usando CASE,
-        // e agrupa os resultados para contagem.
         String sql = "SELECT\n" +
                 "    CASE\n" +
                 "        WHEN TIMESTAMPDIFF(YEAR, C.data_nascimento, CURDATE()) <= 2 THEN '0 a 2 anos'\n" +

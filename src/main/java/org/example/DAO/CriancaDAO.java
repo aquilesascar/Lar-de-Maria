@@ -33,7 +33,6 @@ public class CriancaDAO {
             }
             pstm.setString(9, criancaDTO.getMotivo_saida());
 
-            // Campos de endereço
             pstm.setString(10, criancaDTO.getLogradouro());
             pstm.setInt(11, criancaDTO.getNumero());
             pstm.setString(12, criancaDTO.getComplemento());
@@ -41,7 +40,6 @@ public class CriancaDAO {
             pstm.setString(14, criancaDTO.getCidade());
             pstm.setString(15, criancaDTO.getEstado());
 
-            // Executa a inserção
             pstm.executeUpdate();
         }
     }

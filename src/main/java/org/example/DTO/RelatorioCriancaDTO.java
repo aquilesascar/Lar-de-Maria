@@ -6,7 +6,6 @@ public class RelatorioCriancaDTO {
     private String genero;
     private int totalCriancas;
 
-    // Getters e Setters
     public String getFaixaEtaria() {
         return faixaEtaria;
     }

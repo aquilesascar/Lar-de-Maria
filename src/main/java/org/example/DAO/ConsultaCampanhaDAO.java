@@ -34,12 +34,11 @@ public class ConsultaCampanhaDAO {
                 float valor_total = rs.getFloat("valorTotal");
                 int quantidade_criancas = rs.getInt("totalCriancas");
 
-                // Cria o objeto DTO e adiciona à lista
                 ConsultaCampanha campanha = new ConsultaCampanha(nome_campanha, valor_total, quantidade_criancas);
                 listaDeCampanhas.add(campanha);
             }
 
-        } // O try-with-resources fecha os recursos automaticamente
+        }
 
         return (ArrayList<ConsultaCampanha>) listaDeCampanhas;
     }

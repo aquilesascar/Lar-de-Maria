@@ -6,8 +6,6 @@ public class DoacaoFinanceiraDTO extends DoacaoDTO {
     private String forma_pagamento;
     private float valor_total;
 
-
-
     public DoacaoFinanceiraDTO(LocalDate data, String tipo_doacao, int id_doacao, Integer id_doador, Integer id_campanha, String forma_pagamento, float valor_total) {
         super(data, tipo_doacao, id_doacao, id_doador, id_campanha);
         this.forma_pagamento = forma_pagamento;

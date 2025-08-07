@@ -34,7 +34,6 @@ public class TelaCadastroCrianca extends JFrame {
         gbc.insets = new Insets(4, 4, 4, 4);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // --- Seção de Dados Pessoais ---
         JPanel panelPessoal = createSectionPanel("Dados Pessoais");
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -53,7 +52,6 @@ public class TelaCadastroCrianca extends JFrame {
         cbGenero = new JComboBox<>(new String[]{"Feminino", "Masculino"});
         panelPessoal.add(cbGenero, createGbc(3, 1));
 
-        // --- Seção de Endereço ---
         JPanel panelEndereco = createSectionPanel("Endereço de Origem");
         gbc.gridx = 0; gbc.gridy = 1; gbc.gridwidth = 2; formPanel.add(panelEndereco, gbc);
         // Logradouro e Número
@@ -78,7 +76,6 @@ public class TelaCadastroCrianca extends JFrame {
         cbEstado = new JComboBox<>(new String[]{"", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"});
         panelEndereco.add(cbEstado, createGbc(3, 2));
 
-        // --- Seção de Acolhimento e Saúde ---
         JPanel panelAcolhimento = createSectionPanel("Informações de Acolhimento e Saúde");
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -97,7 +94,6 @@ public class TelaCadastroCrianca extends JFrame {
         txtCondicoesMedicas = new JTextArea(4, 20);
         panelAcolhimento.add(new JScrollPane(txtCondicoesMedicas), createGbc(0, 4, 2, 1));
 
-        // --- Seção de Educação ---
         JPanel panelEducacao = createSectionPanel("Informações Educacionais");
         gbc.gridx = 1;
         gbc.gridy = 2;
@@ -108,7 +104,6 @@ public class TelaCadastroCrianca extends JFrame {
         txtEscola = new JTextField(20);
         panelEducacao.add(txtEscola, createGbc(1, 0));
 
-        // --- Painel de Botões ---
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         btnSalvar = new JButton("Salvar Cadastro");
         btnLimpar = new JButton("Limpar Campos");
@@ -118,7 +113,6 @@ public class TelaCadastroCrianca extends JFrame {
         add(formPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
 
-        // --- Ações dos Botões ---
         btnSalvar.addActionListener(e -> salvarCrianca());
         btnLimpar.addActionListener(e -> limparCampos());
     }
@@ -197,7 +191,6 @@ public class TelaCadastroCrianca extends JFrame {
     }
 
     private void limparCampos() {
-        // Limpa todos os campos do formulário
         txtNome.setText("");
         txtDataNascimento.setText("");
         txtDataEntrada.setText("");

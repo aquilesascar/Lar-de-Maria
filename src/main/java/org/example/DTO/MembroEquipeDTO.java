@@ -11,13 +11,12 @@ public class MembroEquipeDTO {
     private String cargo_funcao;
     private Date data_inicio;
     private Date data_saida;
-    private String tipo_membro; // novo campo
-    private Integer id_doador_voluntario; // novo campo
+    private String tipo_membro;
+    private Integer id_doador_voluntario;
 
     public MembroEquipeDTO() {
     }
 
-    // Construtor com todos os campos, exceto o ID (inserção)
     public MembroEquipeDTO(String nome_completo, String cpf, String email, String telefone,
                            String cargo_funcao, Date data_inicio, Date data_saida,
                            String tipo_membro, Integer id_doador_voluntario) {
@@ -45,7 +44,6 @@ public class MembroEquipeDTO {
         this.tipo_membro = tipo_membro;
     }
 
-    // Construtor com todos os campos (inclusive ID)
     public MembroEquipeDTO(int id_membro_equipe, String nome_completo, String cpf, String email, String telefone,
                            String cargo_funcao, Date data_inicio, Date data_saida,
                            String tipo_membro, Integer id_doador_voluntario) {
@@ -61,7 +59,6 @@ public class MembroEquipeDTO {
         this.id_doador_voluntario = id_doador_voluntario;
     }
 
-    // Getters
     public int getId_membro_equipe() {
         return id_membro_equipe;
     }
@@ -144,7 +141,6 @@ public class MembroEquipeDTO {
 
     @Override
     public String toString() {
-        return nome_completo; // exibido no JComboBox
+        return nome_completo;
     }
-
 }

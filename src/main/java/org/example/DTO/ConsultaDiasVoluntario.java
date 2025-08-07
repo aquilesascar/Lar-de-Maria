@@ -4,7 +4,6 @@ public class ConsultaDiasVoluntario {
     private String dia;
     private String nome;
 
-
     public ConsultaDiasVoluntario(String dia, String nome) {
         this.dia = dia;
         this.nome = nome;

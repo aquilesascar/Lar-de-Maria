@@ -12,16 +12,9 @@ import java.util.List;
 
 public class RelatorioNecessidadeDAO {
 
-    /**
-     * Busca no banco de dados um relatório que conta as necessidades por status para cada criança.
-     * @return Uma lista de RelatorioNecessidadeDTO com os dados agregados.
-     * @throws SQLException
-     */
     public List<RelatorioNecessidadeDTO> getRelatorioStatusPorCrianca() throws SQLException {
         List<RelatorioNecessidadeDTO> relatorio = new ArrayList<>();
 
-        // Esta query SQL junta as tabelas, agrupa por criança e status, e conta as ocorrências.
-        // A subquery no ORDER BY garante que as crianças com mais necessidades no total apareçam primeiro.
         String sql = "SELECT " +
                 "    c.nome AS nome_crianca, " +
                 "    ne.status, " +

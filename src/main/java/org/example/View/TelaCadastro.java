@@ -44,8 +44,6 @@ public class TelaCadastro extends JFrame {
             new TelaCadastroDoacao().setVisible(true);
         });
         add(btnRegistrarDoacao);
-
-
         add(btnCrianca);
         add(btnCampanha);
         add(btnMembroEquipe);

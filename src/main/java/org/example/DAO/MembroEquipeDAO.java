@@ -23,21 +23,18 @@ public class MembroEquipeDAO {
             stmt.setString(5, membroEquipe.getCargo_funcao());
             stmt.setDate(6, new java.sql.Date(membroEquipe.getData_inicio().getTime()));
 
-            // Data de saída pode ser null
             if (membroEquipe.getData_saida() != null) {
                 stmt.setDate(7, new java.sql.Date(membroEquipe.getData_saida().getTime()));
             } else {
                 stmt.setNull(7, Types.DATE);
             }
 
-            // Tipo de membro pode ser null
             if (membroEquipe.getTipo_membro() != null) {
                 stmt.setString(8, membroEquipe.getTipo_membro());
             } else {
                 stmt.setNull(8, Types.VARCHAR);
             }
 
-            // ID doador voluntário pode ser null
             if (membroEquipe.getId_doador_voluntario() != null) {
                 stmt.setInt(9, membroEquipe.getId_doador_voluntario());
             } else {
@@ -129,7 +126,4 @@ public class MembroEquipeDAO {
             System.err.println("Erro ao atualizar membro da equipe: " + e.getMessage());
         }
     }
-
-
-
 }

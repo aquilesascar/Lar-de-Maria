@@ -37,7 +37,5 @@ public class TelaPrincipal extends JFrame {
 
         add(painel);
         setVisible(true);
-
     }
-
 }

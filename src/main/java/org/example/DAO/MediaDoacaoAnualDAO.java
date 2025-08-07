@@ -14,7 +14,6 @@ import java.util.List;
 public class MediaDoacaoAnualDAO {
 
     public List<DoacaoMesDTO> MediaDoacaoAnualDAO() throws SQLException {
-        // A sua consulta SQL já estava correta para o seu banco
         String sql = "SELECT MONTH(data) AS mes, ROUND(AVG(valor_total), 2) AS media_doacao\n" +
                 "FROM doacaofinanceira_trabalhovoluntario_doacaomaterial\n" +
                 "WHERE valor_total IS NOT NULL AND YEAR(data) = YEAR(CURDATE()) GROUP BY MONTH(data) ORDER BY mes";
@@ -24,7 +23,6 @@ public class MediaDoacaoAnualDAO {
         try (
                 Connection conn = conexao.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);
-                // CORREÇÃO: executeQuery() não precisa do argumento 'sql'
                 ResultSet rs = stmt.executeQuery()){
 
             while (rs.next()) {

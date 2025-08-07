@@ -32,12 +32,10 @@ public class TelaListarVoluntarios extends JFrame {
 
         painelPrincipal = new JPanel(new BorderLayout());
 
-        // Configuração da JTable e do JScrollPane
         tabelaVoluntarios = new JTable();
         scrollPane = new JScrollPane(tabelaVoluntarios);
         painelPrincipal.add(scrollPane, BorderLayout.CENTER);
 
-        // Botão para atualizar a lista
         botaoAtualizar = new JButton("Atualizar Dados");
         botaoAtualizar.addActionListener(this::botaoAtualizarActionPerformed);
 
@@ -51,7 +49,6 @@ public class TelaListarVoluntarios extends JFrame {
     private void carregarDadosNaTabela() {
         ConsultaDiasVoluntarioDAO dao = new ConsultaDiasVoluntarioDAO();
         try {
-            // Busca a lista de voluntários no banco de dados
             List<ConsultaDiasVoluntario> lista = dao.consultaDiasVoluntario();
 
             // Cria um modelo de tabela para exibir os dados
@@ -67,11 +64,9 @@ public class TelaListarVoluntarios extends JFrame {
                 });
             }
 
-            // Atribui o modelo à JTable
             tabelaVoluntarios.setModel(modelo);
 
         } catch (SQLException e) {
-            // Em caso de erro, exibe uma mensagem amigável
             JOptionPane.showMessageDialog(this, "Erro ao carregar os dados: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }

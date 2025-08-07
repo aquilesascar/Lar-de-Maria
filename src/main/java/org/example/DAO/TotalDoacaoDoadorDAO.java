@@ -12,7 +12,6 @@ import java.util.List;
 
 public class TotalDoacaoDoadorDAO {
     public List<DoadorTotalDTO> TotalDoacaoDoador() throws SQLException {
-        // A sua consulta SQL já estava correta para o seu banco
         String sql = "SELECT d.nome_completo, ROUND(SUM(df.valor_total), 2) AS total_doacao \n" +
                 "FROM doacaofinanceira_trabalhovoluntario_doacaomaterial df\n" +
                 "JOIN doadaor_pessoafisica_pessoajuridica d ON df.id_doador = d.id_doador\n" +
@@ -25,7 +24,6 @@ public class TotalDoacaoDoadorDAO {
         try (
                 Connection conn = conexao.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);
-                // CORREÇÃO: executeQuery() não precisa do argumento 'sql'
                 ResultSet rs = stmt.executeQuery()){
 
             while (rs.next()) {
