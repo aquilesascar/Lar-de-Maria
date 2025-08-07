@@ -35,7 +35,7 @@ public class TelaRelatorioMediaDoacoes extends JFrame {
         super("Relatório de Média de Doações"); // Chamada para o construtor de JFrame
 
         // Configurações da janela
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(600, 400);
         this.setLocationRelativeTo(null); // Centraliza a janela
 

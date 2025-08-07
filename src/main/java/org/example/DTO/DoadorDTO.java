@@ -36,8 +36,9 @@ public abstract class DoadorDTO {
         this.telefone = telefone;
         this.email = email;
         this.id_doador = id_doador;
-
     }
+
+
 
     public String getComplemento() {
         return complemento;

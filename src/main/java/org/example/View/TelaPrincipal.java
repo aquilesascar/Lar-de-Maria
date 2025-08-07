@@ -8,7 +8,7 @@ public class TelaPrincipal extends JFrame {
 
     public  TelaPrincipal() {
         setTitle("Sistema Lar de Maria");
-        setSize(400, 250);
+        setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -34,51 +34,6 @@ public class TelaPrincipal extends JFrame {
         painel.add(btnAtualizar);
         painel.add(btnExcluir);
         painel.add(btnRelatorios);
-
-
-        JButton btnDoador = new JButton("Cadastrar Doador");
-        btnDoador.addActionListener((ActionEvent e) -> {
-            new TelaCadastroDoador().setVisible(true);
-        });
-        painel.add(btnDoador);
-
-
-        JButton btnNecessidadeEspecifica = new JButton("Registrar Necessidade");
-        btnNecessidadeEspecifica.addActionListener((ActionEvent e) -> {
-            new TelaNecessidadeEspecifica().setVisible(true);
-        });
-        painel.add(btnNecessidadeEspecifica);
-
-        JButton btnRegistrarEntrega = new JButton("Registrar Entrega");
-        btnRegistrarEntrega.addActionListener((ActionEvent e) -> {
-            new TelaRegistrarEntrega().setVisible(true);
-        });
-        painel.add(btnRegistrarEntrega);
-
-        /*JButton btnRegistrarDoacao = new JButton("Registrar Doação");
-        btnRegistrarDoacao.addActionListener((ActionEvent e) -> {
-            new TelaCadastroDoacao().setVisible(true);
-        });
-        painel.add(btnRegistrarDoacao);
-*/
-        JButton btnListarCampanhas = new JButton("Listar Campanhas");
-        btnListarCampanhas.addActionListener((ActionEvent e) -> {
-            new TelaListarCampanhas().setVisible(true);
-        });
-        painel.add(btnListarCampanhas);
-
-        JButton btnListarVoluntarios = new JButton("Dias de trabalho do Voluntario");
-        btnListarVoluntarios.addActionListener((ActionEvent e) -> {
-            new TelaListarVoluntarios().setVisible(true);
-        });
-        painel.add(btnListarVoluntarios);
-
-        JButton btnMediaDoacoes = new JButton("Doações Anuais");
-        btnMediaDoacoes.addActionListener((ActionEvent e) -> {
-            new TelaMediaDoacaoAnual().setVisible(true);
-        });
-        painel.add(btnMediaDoacoes);
-
 
         add(painel);
         setVisible(true);
