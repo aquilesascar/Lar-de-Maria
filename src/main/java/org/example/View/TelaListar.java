@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 public class TelaListar extends JFrame {
     public TelaListar() {
         setTitle("Cadastro");
-        setSize(800, 600);
+        setSize(500, 450);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLayout(new GridLayout(4, 1, 10, 10));
