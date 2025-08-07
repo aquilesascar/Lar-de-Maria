@@ -12,8 +12,6 @@ public class DoacaoFinanceiraDTO extends DoacaoDTO {
         super(data, tipo_doacao, id_doacao, id_doador, id_campanha);
         this.forma_pagamento = forma_pagamento;
         this.valor_total = valor_total;
-
-
     }
 
     public String getForma_pagamento() {

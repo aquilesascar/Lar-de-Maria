@@ -73,6 +73,11 @@ public class TelaPrincipal extends JFrame {
         });
         painel.add(btnListarVoluntarios);
 
+        JButton btnMediaDoacoes = new JButton("Doações Anuais");
+        btnMediaDoacoes.addActionListener((ActionEvent e) -> {
+            new TelaMediaDoacaoAnual().setVisible(true);
+        });
+        painel.add(btnMediaDoacoes);
 
 
         add(painel);

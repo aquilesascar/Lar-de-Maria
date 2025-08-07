@@ -25,8 +25,10 @@ public class TelaListarCampanhas extends JFrame {
     private void initComponents() {
         setTitle("Relatório de Campanhas");
         setSize(800, 600);
+        /*
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+         */
 
         painelPrincipal = new JPanel(new BorderLayout());
 

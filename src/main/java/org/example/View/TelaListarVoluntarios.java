@@ -25,8 +25,10 @@ public class TelaListarVoluntarios extends JFrame {
     private void initComponents() {
         setTitle("Relatório de Voluntários");
         setSize(600, 400);
+        /*
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+         */
 
         painelPrincipal = new JPanel(new BorderLayout());
 
