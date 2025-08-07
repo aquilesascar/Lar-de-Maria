@@ -11,6 +11,7 @@ public class TelaListar extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLayout(new GridLayout(4, 1, 10, 10));
+        setVisible(true);
 
         JButton btnListarCampanhas = new JButton("Listar Campanhas");
         btnListarCampanhas.addActionListener((ActionEvent e) -> {
