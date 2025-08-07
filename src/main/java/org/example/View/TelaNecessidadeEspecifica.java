@@ -4,6 +4,8 @@ import org.example.DAO.CriancaDAO;
 import org.example.DAO.NecessidadeEspecificaDAO;
 import org.example.DTO.CriancaDTO;
 import org.example.DTO.NecessidadeEspecificaDTO;
+import org.example.DAO.MembroEquipeDAO;
+import org.example.DTO.MembroEquipeDTO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Vector;
 
+
 public class TelaNecessidadeEspecifica extends JFrame {
 
     private JComboBox<CriancaDTO> cbCriancas;
@@ -22,7 +25,8 @@ public class TelaNecessidadeEspecifica extends JFrame {
     private JButton btnSalvar;
     private JTextField txtDataRegistro;
     private JLabel lblMembroEquipe;
-    private JComboBox<String> cbMembrosEquipe;
+    private javax.swing.JComboBox<MembroEquipeDTO> cbMembrosEquipe;
+
 
     public TelaNecessidadeEspecifica() {
         setTitle("Atender Necessidade Específica");
@@ -64,7 +68,7 @@ public class TelaNecessidadeEspecifica extends JFrame {
         // Linha 3: Status
         gbc.gridx = 0; gbc.gridy = 3; gbc.anchor = GridBagConstraints.EAST;
         formPanel.add(new JLabel("Status:"), gbc);
-        cbStatus = new JComboBox<>(new String[]{"CONCLUIDO", "EM DESENVOLVIMENTO"});
+        cbStatus = new JComboBox<>(new String[]{"EM DESENVOLVIMENTO", "CONCLUIDO"});
         gbc.gridx = 1; gbc.anchor = GridBagConstraints.WEST;
         formPanel.add(cbStatus, gbc);
 
@@ -103,8 +107,17 @@ public class TelaNecessidadeEspecifica extends JFrame {
     }
 
     private void carregarMembrosEquipe() {
-        // Implementar se desejar carregar membros da equipe
+        try {
+            org.example.DAO.MembroEquipeDAO dao = new org.example.DAO.MembroEquipeDAO();
+            List<org.example.DTO.MembroEquipeDTO> membros = dao.listarMembros();
+            cbMembrosEquipe.setModel(new DefaultComboBoxModel<>(new Vector<>(membros)));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Erro ao carregar membros da equipe: " + e.getMessage(),
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }
+
 
     private void carregarComboBoxes() {
         CriancaDAO criancaDAO = new CriancaDAO();
