@@ -27,7 +27,7 @@ public class TelaPrincipal extends JFrame {
         JButton btnExcluir = new JButton("Excluir");
         btnExcluir.addActionListener(e -> new TelaExclusao());
 
-        Button btnRelatorios = new Button("Relatórios");
+        JButton btnRelatorios = new JButton("Relatórios");
         btnRelatorios.addActionListener(e -> new TelaRelatorios());
 
         painel.add(btnCadastro);
