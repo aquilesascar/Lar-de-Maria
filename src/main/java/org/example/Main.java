@@ -1,6 +1,8 @@
 package org.example;
 
 import org.example.View.TelaPrincipal;
+import org.example.View.TelaRelatorioIdade;
+import org.example.View.TelaRelatorioMediaDoacoes;
 
 import javax.swing.*;
 
@@ -12,6 +14,7 @@ public class Main {
 
         // Garante que a interface gráfica seja executada na thread de eventos da AWT (EDT)
 
+        new TelaRelatorioIdade().setVisible(true);
     }
 }
 
